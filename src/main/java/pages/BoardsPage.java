@@ -29,8 +29,16 @@ public BoardsPage(WebDriver driver) {
 
     @FindBy(xpath = "//button[@data-testid='header-member-menu-button']")
     WebElement btnAccount;
+
+
     @FindBy(xpath = "//span[text()='Manage account']")
     WebElement btnManageAccount;
+
+    public void openMyAccount(){
+        clickWait(btnAccount,3);
+        clickWait(btnManageAccount,3);
+    }
+
 
     @FindBy(xpath = "//span[@class='QMKgZFIlTLiEJN']")
     WebElement popUpMessageBoardDelete;

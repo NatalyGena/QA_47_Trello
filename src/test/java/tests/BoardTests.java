@@ -10,6 +10,7 @@ import pages.BoardsPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MyBoardPage;
+import static utils.RandomUtils.*;
 
 import java.util.Locale;
 
@@ -28,7 +29,8 @@ public class BoardTests extends AppManager {
     }
     @Test
     public void createNewBoardPositiveTest(){
-        Board board = Board.builder().boardTitle("ASD").build();
+        //Board board = Board.builder().boardTitle("ASD").build();
+        Board board = Board.builder().boardTitle(generateString(5)).build();
         new BoardsPage(getDriver()).createNewBoard(board);
         Assert.assertTrue(new MyBoardPage(getDriver())
                 .validateBoardName(board.getBoardTitle(), 5));
