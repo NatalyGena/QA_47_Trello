@@ -2,6 +2,7 @@ package tests;
 
 import dto.User;
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AtlassianPage;
@@ -30,13 +31,17 @@ public class ChangeProfileTests extends AppManager {
 
     }
 
-    @Test void changeProfilePhoto(){
-    boardsPage.openMyAccount();
+    @Test
+    public void changeProfilePhoto() {
+        boardsPage.openMyAccount();
         List<String> tabs = new ArrayList<>(getDriver()
                 .getWindowHandles());
         System.out.println(tabs);
         getDriver().switchTo().window(tabs.get(1));
-        AtlassianPage atlassianPage =new AtlassianPage(getDriver());
+        AtlassianPage atlassianPage = new AtlassianPage(getDriver());
         atlassianPage.changeMyProfilePhoto("src/main/resources/WhatsApp 2025-06-06 в 18.05.36_579bab8c.jpg");
+        Assert.assertTrue(atlassianPage.validateMessage("We've uploaded your new avatar." +
+                " It may take a few minutes to display everywhere."));
+
     }
 }

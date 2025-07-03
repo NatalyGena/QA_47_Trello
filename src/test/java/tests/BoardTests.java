@@ -1,5 +1,6 @@
 package tests;
 
+import data_provider.DataProviderBoards;
 import dto.Board;
 import dto.User;
 import manager.AppManager;
@@ -42,6 +43,21 @@ public class BoardTests extends AppManager {
         new BoardsPage(getDriver()).createNewBoardNegative(board);
         Assert.assertTrue(new BoardsPage(getDriver())
                 .buttonCreateIsNotClickable());
+
+    }
+
+    @Test(dataProvider = "newBoardDP",dataProviderClass = DataProviderBoards.class)
+    public void createNewBoardPositiveTestWithDataProvider(Board board){
+        new BoardsPage(getDriver()).createNewBoard(board);
+        Assert.assertTrue(new MyBoardPage(getDriver())
+                .validateBoardName(board.getBoardTitle(), 5));
+
+    }
+    @Test(dataProvider = "newBoardDataProvFromFile",dataProviderClass = DataProviderBoards.class)
+    public void createNewBoardPositiveTestWithDataProviderFile(Board board){
+        new BoardsPage(getDriver()).createNewBoard(board);
+        Assert.assertTrue(new MyBoardPage(getDriver())
+                .validateBoardName(board.getBoardTitle(), 5));
 
     }
 }
