@@ -27,7 +27,8 @@ public class AtlassianPage extends BasePage {
     WebElement inputUploadPhoto;
     @FindBy(xpath = "//button[@type = 'submit']")
     WebElement btnUpload;
-    @FindBy(xpath = "//div[@class='css-1748k3u']")
+ //   @FindBy(xpath = "//div[@class='css-1748k3u']")
+    @FindBy(xpath = "//div[@class='atlaskit-portal-container']")
     WebElement popUpMessage;
 
 

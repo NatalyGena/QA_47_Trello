@@ -39,7 +39,7 @@ public class ChangeProfileTests extends AppManager {
         System.out.println(tabs);
         getDriver().switchTo().window(tabs.get(1));
         AtlassianPage atlassianPage = new AtlassianPage(getDriver());
-        atlassianPage.changeMyProfilePhoto("src/main/resources/WhatsApp 2025-06-06 в 18.05.36_579bab8c.jpg");
+        atlassianPage.changeMyProfilePhoto("src/main/resources/WhatsApp 2025-06-04 в 12.35.14_c2b03e90.jpg");
         Assert.assertTrue(atlassianPage.validateMessage("We've uploaded your new avatar." +
                 " It may take a few minutes to display everywhere."));
 

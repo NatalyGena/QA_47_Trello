@@ -6,19 +6,20 @@ import dto.User;
 import manager.AppManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.BoardsPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MyBoardPage;
+import utils.TestNgListener;
+
 import static utils.RandomUtils.*;
 
 import java.util.Locale;
-
+@Listeners (TestNgListener.class)
 public class BoardTests extends AppManager {
-
-
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login(){
         User user = User.builder()
                 .email("genahsvili81@gmail.com")
@@ -28,7 +29,7 @@ public class BoardTests extends AppManager {
         new LoginPage(getDriver()).login(user);
 
     }
-    @Test
+    @Test(groups = {"smoke","regres"})
     public void createNewBoardPositiveTest(){
         //Board board = Board.builder().boardTitle("ASD").build();
         Board board = Board.builder().boardTitle(generateString(5)).build();
@@ -37,7 +38,7 @@ public class BoardTests extends AppManager {
                 .validateBoardName(board.getBoardTitle(), 5));
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void createNewBoardNegativeTest(){
         Board board = Board.builder().boardTitle("").build();
         new BoardsPage(getDriver()).createNewBoardNegative(board);

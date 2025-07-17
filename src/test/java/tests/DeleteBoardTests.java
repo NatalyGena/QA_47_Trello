@@ -3,12 +3,10 @@ package tests;
 import dto.Board;
 import dto.User;
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BasePage;
-import pages.BoardsPage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.lang.reflect.Method;
 
@@ -18,7 +16,7 @@ public class DeleteBoardTests extends AppManager {
     BoardsPage boardsPage;
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login(Method method){
         User user = User.builder()
                 .email("genahsvili81@gmail.com")
@@ -34,9 +32,9 @@ public class DeleteBoardTests extends AppManager {
 
 
     }
-    @Test
-    public  void deleteBoardPositiveTest(){
-
-
+    @Test(groups = {"smoke","regres"})
+    public void deleteBoardPositiveTest() {
+        new MyBoardPage(getDriver()).deleteBoard();
+        Assert.assertTrue(boardsPage.validatePopUpMessage("Board deleted."));
     }
 }
